@@ -1,7 +1,7 @@
 export default class Game {
 
 	constructor(element, width, height) {
-		this.element = element;
+		this.element = element;//where the game will be appended in html 
 		this.width = width;
 		this.height = height;
 	
@@ -13,3 +13,4 @@ export default class Game {
 	}
 
 }
+//need to build Ball, Paddle, Scoreboard, Board using classes in js partials//
