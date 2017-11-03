@@ -78,6 +78,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 var SVG_NS = exports.SVG_NS = 'http://www.w3.org/2000/svg';
 
+var ballRadius = exports.ballRadius = 8;
+var boardGap = exports.boardGap = 10;
+var paddleHeight = exports.paddleHeight = 56;
+var paddleWidth = exports.paddleWidth = 8;
+
 var KEYS = exports.KEYS = {
   a: 'a', // player 1 up key
   z: 'z', // player 1 down key
@@ -131,15 +136,15 @@ var Game = function () {
 		this.width = width;
 		this.height = height;
 
-		this.ballRadius = 8;
+		this.ballRadius = _settings.ballRadius;
 
 		this.gameElement = document.getElementById(this.element);
 		this.board = new _Board2.default(this.width, this.height);
 		this.ball = new _Ball2.default(this.ballRadius, this.width, this.height);
 
-		this.boardGap = 10;
-		this.paddleWidth = 8;
-		this.paddleHeight = 56;
+		this.boardGap = _settings.boardGap;
+		this.paddleWidth = _settings.paddleWidth;
+		this.paddleHeight = _settings.paddleHeight;
 
 		this.paddleOne = new _Paddle2.default(this.height, this.paddleWidth, this.paddleHeight, this.boardGap, (this.height - this.paddleHeight) / 2, _settings.KEYS.a, _settings.KEYS.z);
 		this.paddleTwo = new _Paddle2.default(this.height, this.paddleWidth, this.paddleHeight, this.width - this.boardGap - this.paddleWidth, (this.height - this.paddleHeight) / 2, _settings.KEYS.up, _settings.KEYS.down);
@@ -163,7 +168,7 @@ var Game = function () {
 			this.paddleOne.render(svg);
 			this.paddleTwo.render(svg);
 
-			this.circle.render(svg);
+			this.ball.render(svg);
 		}
 	}]);
 
@@ -257,6 +262,7 @@ var Ball = function () {
       circle.setAttributeNS(null, 'cx', this.boardWidth / 2);
       circle.setAttributeNS(null, 'cy', this.boardHeight / 2);
       circle.setAttributeNS(null, 'r', this.radius);
+      circle.setAttributeNS(null, 'fill', 'white');
       svg.appendChild(circle);
     }
   }]);
@@ -306,7 +312,7 @@ var Board = function () {
       line.setAttributeNS(null, 'x2', this.width / 2);
       line.setAttributeNS(null, 'y2', this.height);
       line.setAttributeNS(null, 'stroke', 'white');
-      line.setAttributeNS(null, 'stroke-dashArray', '10, 8');
+      line.setAttributeNS(null, 'stroke-dasharray', '10, 15');
       line.setAttributeNS(null, 'stroke-width', '5');
       svg.appendChild(line);
     }
