@@ -33,10 +33,10 @@ export default class Ball {
     
     if (hitLeft) {
       this.direction = -1;
-      this.goal(paddleTwo);
+      this.goal(paddleTwo, paddleOne);
     } else if (hitRight) {
       this.direction = 1;
-      this.goal(paddleOne);
+      this.goal(paddleOne, paddleTwo);
     } else if (hitTop || hitBottom) {
       this.vy = -this.vy;
     }
@@ -70,9 +70,16 @@ export default class Ball {
       }
     }
   }
-  
-  goal(paddle) {
-    paddle.score ++;
+  //End Game//
+
+  goal(point, end) {
+    point.score ++; 
+    if (point.score > 10) {
+      
+      point.score = 0;
+      end.score =0;
+      alert('yahoo');     
+    }
     this.reset();
   }
   
